@@ -16,3 +16,7 @@ NOTE: if the image on the video doesn't show up at first don't worry, just rewin
 
 5- Finally, after you pressed "STOP", you can download your .csv files by clicking "DOWNLOAD" button at the left-bottom.
 
+
+Vercel Domain
+
+https://eye-tracking.vercel.app/GazeRecorder.html
