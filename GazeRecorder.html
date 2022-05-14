@@ -1,0 +1,212 @@
+
+<!DOCTYPE HTML >
+<html>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+   <head>
+      <title>GazeCloudAPI</title>
+      <div id="display_image"> </div>
+
+
+ <script src="https://api.gazerecorder.com/GazeCloudAPI.js" ></script>
+ <script src="https://app.gazerecorder.com/GazeRecorderAPI.js"></script>
+ <script src="https://app.gazerecorder.com/GazePlayer.js"></script>
+
+      <style type="text/css">
+         body {
+         overflow: hidden;
+         }
+         #display_image {
+            height: 70%;
+            border: 1px solid black;
+            background-position: center;
+            background-size: cover;
+         }
+         #block{
+            display: inline-block;
+            background: mediumpurple;
+  padding: 1rem;
+         }
+         #parent{
+  padding: 1rem;
+         }
+      </style>
+      <script type = "text/javascript" >
+
+
+const xdata = [
+    ["GazeX"],
+
+];
+const ydata = [
+    ["GazeY"],
+];
+const timedata = [
+    ["Timestamps"],
+];
+
+            
+         function PlotGaze(GazeData) {
+
+/*
+	GazeData.state // 0: valid gaze data; -1 : face tracking lost, 1 : gaze uncalibrated
+	GazeData.docX // gaze x in document coordinates
+	GazeData.docY // gaze y in document cordinates
+	GazeData.time // timestamp
+*/
+
+         
+             document.getElementById("GazeData").innerHTML = "GazeX: " + GazeData.GazeX + " GazeY: " + GazeData.GazeY;
+             document.getElementById("HeadPhoseData").innerHTML = " HeadX: " + GazeData.HeadX + " HeadY: " + GazeData.HeadY + " HeadZ: " + GazeData.HeadZ;
+             document.getElementById("HeadRotData").innerHTML = " Yaw: " + GazeData.HeadYaw + " Pitch: " + GazeData.HeadPitch + " Roll: " + GazeData.HeadRoll;
+         
+
+         var x = GazeData.docX;
+         var y = GazeData.docY;
+         
+         var gaze = document.getElementById("gaze");
+         x -= gaze .clientWidth/2;
+         y -= gaze .clientHeight/2;
+         
+
+	gaze.style.left = x + "px";
+	gaze.style.top = y + "px";
+
+         
+         if(GazeData.state != 0)
+         {
+         	if( gaze.style.display  == 'block')
+         	gaze  .style.display = 'none';
+         }
+         else
+         {
+         	if( gaze.style.display  == 'none')
+         	gaze.style.display = 'block';
+            xdata.push([GazeData.docX]);
+            ydata.push([GazeData.docY]);
+            timedata.push([GazeData.time]);
+         }
+         
+ 
+         }
+         
+
+
+
+         //////set callbacks/////////
+   window.addEventListener("load", function() {
+
+         GazeCloudAPI.OnCalibrationComplete =function(){ console.log('gaze Calibration Complete')  }
+         GazeCloudAPI.OnCamDenied =  function(){ console.log('camera  access denied')  }
+         GazeCloudAPI.OnError =  function(msg){ console.log('err: ' + msg)  }
+         GazeCloudAPI.UseClickRecalibration = true;
+      	 GazeCloudAPI.OnResult = PlotGaze; 
+          });
+     
+
+function Start() {
+	GazeCloudAPI.StartEyeTracking();
+}
+
+function Record() {
+   GazeRecorderAPI.Rec();
+}
+
+function Stop() {
+	GazeCloudAPI.StopEyeTracking();
+   GazeRecorderAPI.StopRec();
+   var SesionReplayData = GazeRecorderAPI.GetRecData();
+   GazePlayer.PlayResultsData(SesionReplayData );
+   
+}
+
+function Download() {
+   let csvContentX = "data:text/csv;charset=utf-8," 
+    + xdata.map(e => e.join(",")).join("\n");
+
+    let csvContentY = "data:text/csv;charset=utf-8," 
+    + ydata.map(e => e.join(",")).join("\n");
+
+    let csvContentTime = "data:text/csv;charset=utf-8," 
+    + timedata.map(e => e.join(",")).join("\n");
+
+
+    window.open(encodeURI(csvContentX));
+    window.open(encodeURI(csvContentY));
+    window.open(encodeURI(csvContentTime));
+}
+
+
+      </script>
+   </head>
+   <body >
+    
+      
+      
+      <div id="parent">
+         <div id="block">
+            <h1>Upload Image</h1>
+         <input type="file" id="image_input" name="image_input" accept="image/*">
+      </div>
+         <div id="block">
+      <h1>Eye-Tracking</h1>
+      <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
+        </div>
+
+     <div id="block">
+      <h1>Record</h1>
+        <button type="button" onclick="Record()" class="btn btn-danger" >Record</button>
+      <button  type="button" onclick="Stop();" class="btn btn-primary" >Stop</button>
+   </div>
+   <div>
+      <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
+   </div>
+</div> 
+
+      <div >
+         <p >  
+            Real-Time Result:
+         <p id = "GazeData" > </p>
+         <p id = "HeadPhoseData" > </p>
+         <p id = "HeadRotData" > </p>
+         </p>
+      </div>
+      <div id ="gaze" style ='position: absolute;display:none;width: 100px;height: 100px;border-radius: 50%;border: solid 2px  rgba(255, 255,255, .2);	box-shadow: 0 0 100px 3px rgba(125, 125,125, .5);	pointer-events: none;	z-index: 999999'></div>
+      ;  
+
+   </body>
+
+<script>
+
+const image_input = document.querySelector("#image_input");
+var uploaded_image = "";
+
+image_input.addEventListener("change", function() {
+   const reader = new FileReader();
+   reader.addEventListener("load", () => {
+      uploaded_image = reader.result;
+      document.getElementById("display_image").classList.add("w3-animate-opacity")
+      document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
+   });
+   reader.readAsDataURL(this.files[0]);
+})
+
+
+
+
+</script>
+
+</html>
