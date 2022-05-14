@@ -19,4 +19,4 @@ NOTE: if the image on the video doesn't show up at first don't worry, just rewin
 
 Vercel Domain
 
-eye-tracking.vercel.app
+https://decoditive.vercel.app/
