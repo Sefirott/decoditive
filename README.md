@@ -19,4 +19,4 @@ NOTE: if the image on the video doesn't show up at first don't worry, just rewin
 
 Vercel Domain
 
-https://eye-tracking.vercel.app/GazeRecorder.html
+eye-tracking.vercel.app
