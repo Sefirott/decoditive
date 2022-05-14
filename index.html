@@ -163,8 +163,7 @@ function Download() {
         </div>
 
      <div id="block">
-        <button type="button" onclick="Record()" class="btn btn-danger" >Record</button>
-      <button  type="button" id="stop" onclick="Stop();" class="btn btn-primary" >Stop</button>
+        <button type="button" id="record" onclick="Record()" class="btn btn-danger" >Record</button>
       <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
    </div>
 
@@ -198,14 +197,17 @@ image_input.addEventListener("change", function() {
    reader.readAsDataURL(this.files[0]);
 })
 
-let stp = document.getElementById("stop");
+let record = document.getElementById("record");
 
-stp.addEventListener("click", function() {
-   document.querySelector("#display_image").style.backgroundImage = "";
-	 alert("Study Completed");
-});
+record.addEventListener("click", function() {
+  
+   setTimeout(() => {
+     Stop();
+     document.querySelector("#display_image").style.backgroundImage = "";
+     alert("Study Completed");
+  }, 58000);
 
-
+})
 
 
 </script>
