@@ -25,7 +25,7 @@
  <script src="https://app.gazerecorder.com/GazeRecorderAPI.js"></script>
  <script src="https://app.gazerecorder.com/GazePlayer.js"></script>
 
-      <style type="text/css">
+       <style type="text/css">
          body {
          overflow: hidden;
          }
@@ -56,6 +56,12 @@
          }
          #start{
             visibility: hidden;
+         }
+         #vis{
+            visibility: hidden;
+         }
+         #img-vis{
+            visibility: visible;
          }
       </style>
       <script type = "text/javascript" >
@@ -175,11 +181,9 @@ function Download() {
 
 
       <div id="block">
-         
+         <div id="img-vis">
          <input type="file" id="image_input" name="image_input" accept="image/*">
-      <!--    
-      <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
-      -->
+      </div>
          <div id="start">
          <button type="button" id="record" class="btn btn-danger" >Start Study</button>
       </div>
@@ -190,7 +194,7 @@ function Download() {
       
       
 
-
+<div id="vis">
       <div id="result" >
          <p >  
             Real-Time Result:
@@ -199,9 +203,9 @@ function Download() {
             <p id = "HeadRotData" > </p>
          </p>
       </div>
+   </div>
       <div id ="gaze" style ='position: absolute;display:none;width: 100px;height: 100px;border-radius: 50%;border: solid 2px  rgba(255, 255,255, .2);	box-shadow: 0 0 100px 3px rgba(125, 125,125, .5);	pointer-events: none;	z-index: 999999'></div>
       ;  
-      
    </body>
       
 <script>
@@ -210,6 +214,9 @@ const image_input = document.querySelector("#image_input");
 var uploaded_image = "";
 
 const s = document.getElementById("start");
+
+let img = document.getElementById("img-vis");
+
 
 
 image_input.addEventListener("click", function () {
@@ -233,8 +240,8 @@ let t = document.getElementById("toggle");
 let record = document.getElementById("record");
 
 record.addEventListener("click", function() {
-    
-
+s.style.visibility = "hidden";
+img.style.visibility = "hidden"; 
 Start();
 
 setTimeout(() => {
@@ -244,7 +251,8 @@ setTimeout(() => {
   
    setTimeout(() => {
      Stop();
-     t.style.visibility = "visible"
+     t.style.visibility = "visible";
+     s.style.visibility = "visible";
      document.querySelector("#display_image").style.backgroundImage = "";
      alert("Study Completed");
   }, 120000);
@@ -276,6 +284,8 @@ setTimeout(() => {
    }  
    }  
    </script>  
+
+
 
 
 
