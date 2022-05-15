@@ -34,18 +34,28 @@
             width: 900px;
             background-position: center;
             background-size: cover;
-         }		 
-         
+         }
          #block{
             display: inline-block;
             position: fixed;
            bottom: 0px;
            left: 0px; 
          }
-	 #parent{
+         #parent{
             display: flex;
             justify-content: center;
             align-items: center;
+         }
+         #result{
+            position: fixed;
+           bottom: 0px;
+           right: 0px; 
+         }
+         #toggle{
+            visibility: hidden;
+         }
+         #start{
+            visibility: hidden;
          }
       </style>
       <script type = "text/javascript" >
@@ -156,27 +166,32 @@ function Download() {
    
    </script>
    </head>
-   <body >
-	   <div id="parent">
+   <body oncontextmenu="return false">
+      <div id="parent">
       <img id="display_image"> 
+      
+   </div>
          
-         
-      </div>
+
 
       <div id="block">
          
          <input type="file" id="image_input" name="image_input" accept="image/*">
-         
-         <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
-         
-         <button type="button" id="record" onclick="Record()" class="btn btn-danger" >Record</button>
+      <!--    
+      <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
+      -->
+         <div id="start">
+         <button type="button" id="record" class="btn btn-danger" >Start Study</button>
+      </div>
+         <div id="toggle">
          <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
+      </div>
       </div>
       
       
 
 
-      <div >
+      <div id="result" >
          <p >  
             Real-Time Result:
             <p id = "GazeData" > </p>
@@ -194,25 +209,45 @@ function Download() {
 const image_input = document.querySelector("#image_input");
 var uploaded_image = "";
 
+const s = document.getElementById("start");
+
+
+image_input.addEventListener("click", function () {
+s.style.visibility = "visible";
+})
+
+
 image_input.addEventListener("change", function() {
    const reader = new FileReader();
    reader.addEventListener("load", () => {
       uploaded_image = reader.result;
       document.getElementById("display_image").classList.add("w3-animate-opacity")
       document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
+
    });
    reader.readAsDataURL(this.files[0]);
 })
 
+
+let t = document.getElementById("toggle");
 let record = document.getElementById("record");
 
 record.addEventListener("click", function() {
+    
+
+Start();
+
+setTimeout(() => {
+   Record();
+}, 90000);
+
   
    setTimeout(() => {
      Stop();
+     t.style.visibility = "visible"
      document.querySelector("#display_image").style.backgroundImage = "";
      alert("Study Completed");
-  }, 58000);
+  }, 120000);
 
 })
 
@@ -220,6 +255,28 @@ record.addEventListener("click", function() {
 
 
 </script>
+
+<script>  
+   document.onkeypress = function (event) {  
+   event = (event || window.event);  
+   if (event.keyCode == 123) {  
+   return false;  
+   }  
+   }  
+   document.onmousedown = function (event) {  
+   event = (event || window.event);  
+   if (event.keyCode == 123) {  
+   return false;  
+   }  
+   }  
+   document.onkeydown = function (event) {  
+   event = (event || window.event);  
+   if (event.keyCode == 123) {  
+   return false;  
+   }  
+   }  
+   </script>  
+
 
 
 </html>
