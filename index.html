@@ -18,7 +18,7 @@
 
    <head>
       <title>EyeTracking</title>
-      <div id="display_image"> </div>
+
 
 
  <script src="https://api.gazerecorder.com/GazeCloudAPI.js" ></script>
@@ -30,14 +30,13 @@
          overflow: hidden;
          }
          #display_image {
-            height: 95%;
+            height: 100%;
             border: 1px solid black;
             background-position: center;
             background-size: cover;
          }
          #block{
             display: inline-block;
-            background: mediumpurple;
          }
       </style>
       <script type = "text/javascript" >
@@ -151,23 +150,22 @@ function Download() {
    <body >
     
       
-      
-      <div id="parent">
+      <div id="display_image"> 
          <div id="block">
            
          <input type="file" id="image_input" name="image_input" accept="image/*">
-      </div>
+         </div>
          <div id="block">
-     
-      <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
-        </div>
-
-     <div id="block">
-        <button type="button" id="record" onclick="Record()" class="btn btn-danger" >Record</button>
-      <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
+         <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
+      </div>
+      <div id="block">
+         <button type="button" id="record" onclick="Record()" class="btn btn-danger" >Record</button>
+       <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
+    </div>
    </div>
+         
 
-</div> 
+
 
       <div >
          <p >  
@@ -208,6 +206,8 @@ record.addEventListener("click", function() {
   }, 58000);
 
 })
+
+
 
 
 </script>
