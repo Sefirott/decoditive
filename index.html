@@ -30,16 +30,22 @@
          overflow: hidden;
          }
          #display_image {
-            height: 100%;
-            border: 1px solid black;
+            height: 600px;
+            width: 900px;
             background-position: center;
-            background-size: cover;		 
+            background-size: cover;
+         }		 
          }
          #block{
             display: inline-block;
             position: fixed;
            bottom: 0px;
            left: 0px; 
+         }
+	 #parent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
          }
       </style>
       <script type = "text/javascript" >
@@ -151,7 +157,8 @@ function Download() {
    </script>
    </head>
    <body >
-      <div id="display_image"> 
+	   <div id="parent">
+      <img id="display_image"> 
          
          
       </div>
