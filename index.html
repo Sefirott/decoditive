@@ -16,7 +16,7 @@
 
 
 
-   <head>
+  <head>
       <title>EyeTracking</title>
 
 
@@ -33,10 +33,12 @@
             height: 100%;
             border: 1px solid black;
             background-position: center;
-            background-size: cover;
          }
          #block{
             display: inline-block;
+            position: fixed;
+           bottom: 0px;
+           left: 0px; 
          }
       </style>
       <script type = "text/javascript" >
@@ -142,44 +144,43 @@ function Download() {
     window.open(encodeURI(csvContentX));
     window.open(encodeURI(csvContentY));
     window.open(encodeURI(csvContentTime));
-}
-
-
-      </script>
+   }
+   
+   
+   </script>
    </head>
    <body >
-    
-      
       <div id="display_image"> 
-         <div id="block">
-           
-         <input type="file" id="image_input" name="image_input" accept="image/*">
-         </div>
-         <div id="block">
-         <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
-      </div>
-      <div id="block">
-         <button type="button" id="record" onclick="Record()" class="btn btn-danger" >Record</button>
-       <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
-    </div>
-   </div>
          
+         
+      </div>
 
+      <div id="block">
+         
+         <input type="file" id="image_input" name="image_input" accept="image/*">
+         
+         <button  type="button" onclick="Start();" class="btn btn-primary" >Calibrate</button>
+         
+         <button type="button" id="record" onclick="Record()" class="btn btn-danger" >Record</button>
+         <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
+      </div>
+      
+      
 
 
       <div >
          <p >  
             Real-Time Result:
-         <p id = "GazeData" > </p>
-         <p id = "HeadPhoseData" > </p>
-         <p id = "HeadRotData" > </p>
+            <p id = "GazeData" > </p>
+            <p id = "HeadPhoseData" > </p>
+            <p id = "HeadRotData" > </p>
          </p>
       </div>
       <div id ="gaze" style ='position: absolute;display:none;width: 100px;height: 100px;border-radius: 50%;border: solid 2px  rgba(255, 255,255, .2);	box-shadow: 0 0 100px 3px rgba(125, 125,125, .5);	pointer-events: none;	z-index: 999999'></div>
       ;  
-
+      
    </body>
-
+      
 <script>
 
 const image_input = document.querySelector("#image_input");
@@ -211,5 +212,6 @@ record.addEventListener("click", function() {
 
 
 </script>
+</html>
 
 </html>
