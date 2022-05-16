@@ -17,9 +17,23 @@
 
 
   
-   <head>
+   < <head>
       <title>EyeTracking</title>
       <div id="display_image"> </div>
+      <div class="logo">
+<img src="DECODITIVE.png"  heigh="200px" width="200px">
+</div>
+    <div class="pad" id="pad">
+
+<h2 class="container-text">Test eye-tracking</h2>
+
+
+<button class="btn" id="terms">I accept the terms!</button>
+
+
+    </div>
+
+
 
 
  <script src="https://api.gazerecorder.com/GazeCloudAPI.js" ></script>
@@ -30,12 +44,23 @@
          body {
          overflow: hidden;
          }
+         .container-text{
+            position: relative;
+            bottom: 7em;
+            left: 30%;
+         }
+         .logo{
+            position: relative;
+            top: 30px;
+            left: 150px;
+         }
          #display_image {
             height: 100%;
             width: 100%;
             border: 1px solid black;
             background-position: center;
             background-size:100% 100%;
+            display: none;
          }
          #block{
             display: inline-block;
@@ -77,6 +102,18 @@
     padding: 6px 12px;
     cursor: pointer;
     background-color: #29C2FF;
+         }
+         #display {
+        display: none;
+         }
+         .pad {
+            background: linear-gradient(#29C2FF, #3B00FF);
+            width: 80%;
+            height: 50%;
+            padding:250px;
+            border-radius: 2.5rem;
+            margin-left: 10%;
+            margin-top: 2%;
          }
       </style>
       <script type = "text/javascript" >
@@ -201,6 +238,10 @@ function Download() {
    </script>
    </head>
    <body oncontextmenu="return false">
+
+
+      <div id="display">
+        
       <div id="parent">
 
       
@@ -235,7 +276,9 @@ function Download() {
          </p>
       </div>
    </div>
+
       <div id ="gaze" style ='position: absolute;display:none;width: 100px;height: 100px;border-radius: 50%;border: solid 2px  rgba(255, 255,255, .2);	box-shadow: 0 0 100px 3px rgba(125, 125,125, .5);	pointer-events: none;	z-index: 999999'></div>
+   </div>
    </body>
       
 <script>
@@ -246,6 +289,13 @@ var uploaded_image = "";
 const s = document.getElementById("start");
 
 let img = document.getElementById("img-vis");
+
+// let dis = document.getElementById("terms");
+
+// dis.addEventListener("click", function() {
+//    document.getElementById("display").style.display = "inline";
+//    document.getElementById("pad").style.display = "none";
+// })
 
 
 
@@ -260,6 +310,7 @@ image_input.addEventListener("change", function() {
       uploaded_image = reader.result;
       document.getElementById("display_image").classList.add("w3-animate-opacity")
       document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
+      document.getElementById("display_image").style.display = "block";
 
    });
    reader.readAsDataURL(this.files[0]);
@@ -289,7 +340,7 @@ Start();
 
 })
 
-
+//#29C2FF and #3B00FF
 
 
 </script>
@@ -313,7 +364,7 @@ Start();
    return false;  
    }  
    }  
-   </script>  
+   </script>   
 
 
 
