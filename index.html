@@ -16,24 +16,26 @@
 
 
 
-  <head>
+  
+   <head>
       <title>EyeTracking</title>
-
+      <div id="display_image"> </div>
 
 
  <script src="https://api.gazerecorder.com/GazeCloudAPI.js" ></script>
  <script src="https://app.gazerecorder.com/GazeRecorderAPI.js"></script>
  <script src="https://app.gazerecorder.com/GazePlayer.js"></script>
 
-       <style type="text/css">
+      <style type="text/css">
          body {
          overflow: hidden;
          }
          #display_image {
-            height: 600px;
-            width: 900px;
+            height: 100%;
+            width: 100%;
+            border: 1px solid black;
             background-position: center;
-            background-size: cover;
+            background-size:100% 100%;
          }
          #block{
             display: inline-block;
@@ -51,9 +53,9 @@
            bottom: 0px;
            right: 0px; 
          }
-         #toggle{
+         /* #toggle{
             visibility: hidden;
-         }
+         } */
          #start{
             visibility: hidden;
          }
@@ -63,10 +65,24 @@
          #img-vis{
             visibility: visible;
          }
+         .study {
+            background-color: #29C2FF;
+         }
+         #image_input {
+            display: none;
+         }
+         .input {
+      border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #29C2FF;
+         }
       </style>
       <script type = "text/javascript" >
 
 
+//Constants to catch API data
 const xdata = [
     ["GazeX"],
 
@@ -78,7 +94,7 @@ const timedata = [
     ["Timestamps"],
 ];
 
-            
+            //function to call API
          function PlotGaze(GazeData) {
 
 /*
@@ -118,9 +134,10 @@ const timedata = [
             xdata.push([GazeData.docX]);
             ydata.push([GazeData.docY]);
             timedata.push([GazeData.time]);
+
          }
-         
- 
+      
+
          }
          
 
@@ -129,7 +146,18 @@ const timedata = [
          //////set callbacks/////////
    window.addEventListener("load", function() {
 
-         GazeCloudAPI.OnCalibrationComplete =function(){ console.log('gaze Calibration Complete')  }
+         GazeCloudAPI.OnCalibrationComplete =function(){ 
+            Record();
+           
+            setTimeout(() => {
+               Stop();
+   //   t.style.visibility = "visible";
+     s.style.visibility = "visible";
+     document.querySelector("#display_image").style.backgroundImage = "";
+     alert("Study Completed");
+            }, 30000);
+
+          }
          GazeCloudAPI.OnCamDenied =  function(){ console.log('camera  access denied')  }
          GazeCloudAPI.OnError =  function(msg){ console.log('err: ' + msg)  }
          GazeCloudAPI.UseClickRecalibration = true;
@@ -174,7 +202,7 @@ function Download() {
    </head>
    <body oncontextmenu="return false">
       <div id="parent">
-      <img id="display_image"> 
+
       
    </div>
          
@@ -182,14 +210,17 @@ function Download() {
 
       <div id="block">
          <div id="img-vis">
+            <label class="input">
          <input type="file" id="image_input" name="image_input" accept="image/*">
+         Upload Image
+      </label>
       </div>
          <div id="start">
-         <button type="button" id="record" class="btn btn-danger" >Start Study</button>
+         <button type="button" id="record" class="study btn" >Start Study</button>
       </div>
-         <div id="toggle">
+         <!-- <div id="toggle">
          <button type="button" onclick="Download()" class="btn btn-primary">Download</button>
-      </div>
+      </div> -->
       </div>
       
       
@@ -205,7 +236,6 @@ function Download() {
       </div>
    </div>
       <div id ="gaze" style ='position: absolute;display:none;width: 100px;height: 100px;border-radius: 50%;border: solid 2px  rgba(255, 255,255, .2);	box-shadow: 0 0 100px 3px rgba(125, 125,125, .5);	pointer-events: none;	z-index: 999999'></div>
-      ;  
    </body>
       
 <script>
@@ -236,7 +266,7 @@ image_input.addEventListener("change", function() {
 })
 
 
-let t = document.getElementById("toggle");
+// let t = document.getElementById("toggle");
 let record = document.getElementById("record");
 
 record.addEventListener("click", function() {
@@ -244,18 +274,18 @@ s.style.visibility = "hidden";
 img.style.visibility = "hidden"; 
 Start();
 
-setTimeout(() => {
-   Record();
-}, 90000);
+// setTimeout(() => {
+//    Record();
+// }, 10000);
 
   
-   setTimeout(() => {
-     Stop();
-     t.style.visibility = "visible";
-     s.style.visibility = "visible";
-     document.querySelector("#display_image").style.backgroundImage = "";
-     alert("Study Completed");
-  }, 120000);
+//    setTimeout(() => {
+//      Stop();
+//      t.style.visibility = "visible";
+//      s.style.visibility = "visible";
+//      document.querySelector("#display_image").style.backgroundImage = "";
+//      alert("Study Completed");
+//   }, 130000);
 
 })
 
