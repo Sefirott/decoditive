@@ -16,20 +16,53 @@
 
 
 
-  
-   < <head>
+   <head>
       <title>EyeTracking</title>
       <div id="display_image"> </div>
       <div class="logo">
-<img src="DECODITIVE.png"  heigh="200px" width="200px">
+<img src="DECODITIVE.png" id="icon" heigh="200px" width="200px">
 </div>
     <div class="pad" id="pad">
 
 <h2 class="container-text">Test eye-tracking</h2>
+<h3>Welcome to Decoditive's testing tool!</h3>
+<p class="info">
+   Before starting the test, please read the terms and privacy policy to understand what it is about and how we protect you. Afterwards, the steps to follow will be:
+   
+</p>
+<p class="info">We will ask you to answer several questions (they will always be delivered anonymously, we will not share your name or email)</p>
+<p class="info">Then, you must perform a calibration of your gaze, which simply consists of following a dot that moves across the screen</p>
+<p class="info">Finally, we will show you the content that you have to watch and when it finishes, you can just close the browser</p>
+<p class="info">
+   If you have any questions, do not hesitate to contact us at the following email address: contact@decoditive.com 
+</p>
+<form>
+<p class="info">
+   <input type="checkbox" id="check1" required>
+   I accept the
+   <a href="https://test.decoditive.com/assets/en/TermsConditions.pdf">
+      terms and conditions
+   </a>
+   </p>
+   <p class="info">
+      <input type="checkbox" id="check2" required>
+   I accept the
+   <a href="https://test.decoditive.com/assets/en/PrivacyPolicy.pdf">
+   privacy policy
+   </a>
+</p>
+<p class="info">
+   <input type="checkbox" id="check3" required>
+   I will not record or disclose with any third party the material that I will see because it can be confidential
+</p>
 
 
-<button class="btn" id="terms">I accept the terms!</button>
+<button type="button"  class="btn container-button" id="terms" >
+   I accept the terms and conditions, and the privacy policy. Let's go for that test!
 
+</button>
+
+</form>
 
     </div>
 
@@ -44,10 +77,27 @@
          body {
          overflow: hidden;
          }
+         .info{
+            font-size: 12px;
+            position: relative;
+            color: #eee;
+            bottom: 18em;
+         }
+         h3{
+            position: relative;
+            bottom: 9em;
+            left: 15%;
+            color: #eee
+         }
+         .container-button{
+            position: relative;
+            bottom: 15.7em;
+         }
          .container-text{
             position: relative;
             bottom: 7em;
             left: 30%;
+            color: #eee
          }
          .logo{
             position: relative;
@@ -110,7 +160,7 @@
             background: linear-gradient(#29C2FF, #3B00FF);
             width: 80%;
             height: 50%;
-            padding:250px;
+            padding: 250px;
             border-radius: 2.5rem;
             margin-left: 10%;
             margin-top: 2%;
@@ -290,12 +340,17 @@ const s = document.getElementById("start");
 
 let img = document.getElementById("img-vis");
 
-// let dis = document.getElementById("terms");
+let dis = document.getElementById("terms");
 
-// dis.addEventListener("click", function() {
-//    document.getElementById("display").style.display = "inline";
-//    document.getElementById("pad").style.display = "none";
-// })
+let check1 = document.getElementById("check1");
+let check2 = document.getElementById("check2");
+let check3 = document.getElementById("check3");
+dis.addEventListener("click", function() {
+   if((check1 && check2 && check3).checked)
+{   document.getElementById("display").style.display = "inline";
+   document.getElementById("pad").style.display = "none";
+}
+})
 
 
 
@@ -345,7 +400,7 @@ Start();
 
 </script>
 
-<script>  
+<!-- <script>  
    document.onkeypress = function (event) {  
    event = (event || window.event);  
    if (event.keyCode == 123) {  
@@ -364,7 +419,7 @@ Start();
    return false;  
    }  
    }  
-   </script>   
+   </script>   -->
 
 
 
