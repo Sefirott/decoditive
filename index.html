@@ -19,11 +19,11 @@
    <head>
       <title>EyeTracking</title>
       <div id="display_image"> </div>
-      <div class="logo">
+      <div class="logo" id="logo">
 <img src="DECODITIVE.png" id="icon" heigh="200px" width="200px">
 </div>
     <div class="pad" id="pad">
-
+<div id="screen1">
 <h2 class="container-text">Test eye-tracking</h2>
 <h3>Welcome to Decoditive's testing tool!</h3>
 <p class="info">
@@ -40,14 +40,15 @@
 <p class="info">
    <input type="checkbox" id="check1" required>
    I accept the
-   <a href="https://test.decoditive.com/assets/en/TermsConditions.pdf">
+   <a href="https://test.decoditive.com/assets/en/TermsConditions.pdf" target="_blank">
       terms and conditions
    </a>
    </p>
    <p class="info">
       <input type="checkbox" id="check2" required>
    I accept the
-   <a href="https://test.decoditive.com/assets/en/PrivacyPolicy.pdf">
+   <a href="https://test.decoditive.com/assets/en/PrivacyPolicy.pdf" 
+   target="_blank">
    privacy policy
    </a>
 </p>
@@ -55,15 +56,27 @@
    <input type="checkbox" id="check3" required>
    I will not record or disclose with any third party the material that I will see because it can be confidential
 </p>
-
-
 <button type="button"  class="btn container-button" id="terms" >
    I accept the terms and conditions, and the privacy policy. Let's go for that test!
 
 </button>
 
 </form>
+</div>
+<div id="screen2">
+   <h2 class="container-text">Test eye-tracking</h2>
+   <p id="p2">You're going to test the last version of the eye tracker </p>
 
+<form>
+   <p id="p3">Questions</p>
+<input type="text" name="name" id="initials" class="form-control"
+placeholder="Please, write your initials + your birth year I.e: John Doe, 1983 - JD 1983"
+required> 
+
+<button class="btn" type="button"  id="next">Next</button>
+</form>
+
+</div>
     </div>
 
 
@@ -76,6 +89,28 @@
       <style type="text/css">
          body {
          overflow: hidden;
+         }
+         #next{
+            position: relative;
+            left: 40%;
+         }
+         #p3{
+            position:relative;
+            bottom: 4em;
+            color: black;
+            font-size: 25px;
+            left: 35%;
+         }
+         #p2{
+            position:relative;
+            bottom: 12em;
+            color: #eee;
+            left: 15%;
+         }
+         #initials{
+            position: relative;
+            width: 100%;
+            bottom: 5em;
          }
          .info{
             font-size: 12px;
@@ -164,6 +199,9 @@
             border-radius: 2.5rem;
             margin-left: 10%;
             margin-top: 2%;
+         }
+         .screen2{
+            display: none;
          }
       </style>
       <script type = "text/javascript" >
@@ -340,6 +378,8 @@ const s = document.getElementById("start");
 
 let img = document.getElementById("img-vis");
 
+let next = document.getElementById("next");
+
 let dis = document.getElementById("terms");
 
 let check1 = document.getElementById("check1");
@@ -347,10 +387,27 @@ let check2 = document.getElementById("check2");
 let check3 = document.getElementById("check3");
 dis.addEventListener("click", function() {
    if((check1 && check2 && check3).checked)
-{   document.getElementById("display").style.display = "inline";
-   document.getElementById("pad").style.display = "none";
+{ 
+        
+     document.getElementById("screen1").style.display = "none";   
+     document.getElementById("screen2").style.display= "inline";
+
+   //   document.getElementById("display").style.display = "inline";
+   // document.getElementById("pad").style.display = "none";
 }
 })
+
+
+let initials = document.getElementById("initials");
+
+next.addEventListener("click", function() {
+   if (initials.value.length > 0) {
+        document.getElementById("display").style.display = "inline";
+   document.getElementById("pad").style.display = "none";
+   document.getElementById("logo").style.display = "none";
+   }
+})
+
 
 
 
@@ -395,7 +452,7 @@ Start();
 
 })
 
-//#29C2FF and #3B00FF
+
 
 
 </script>
@@ -419,7 +476,7 @@ Start();
    return false;  
    }  
    }  
-   </script>   
+   </script>  
 
 
 
