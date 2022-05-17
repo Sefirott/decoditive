@@ -14,7 +14,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
+<link rel="stylesheet/less" type="text/css" href="styles.less" />
+<script src="less.js" type="text/javascript"></script>
 
    <head>
       <title>EyeTracking</title>
@@ -67,15 +68,19 @@
    <h2 class="container-text">Test eye-tracking</h2>
    <p id="p2">You're going to test the last version of the eye tracker </p>
 
-<form>
+
+   <div id="whitespace">
    <p id="p3">Questions</p>
-<input type="text" name="name" id="initials" class="form-control"
-placeholder="Please, write your initials + your birth year I.e: John Doe, 1983 - JD 1983"
-required> 
-
+   <div class="wrapper">
+<input type="text" name="name" id="initials" class="form__input"
+autocomplete="off" required> 
+<label for="initials" class="form__label">
+Please, write your initials + birth year. Ie: John Doe, born in 1983 - JD 1983*
+</label>
+</div>
 <button class="btn" type="button"  id="next">Next</button>
-</form>
 
+</div>
 </div>
     </div>
 
@@ -90,33 +95,71 @@ required>
          body {
          overflow: hidden;
          }
+         .wrapper{
+            position: relative;
+         }
+         .form__label{
+            position: absolute;
+            bottom: 4.2rem;
+            left: -2rem;
+            color: #3B00FF;
+            font-size: 15px;
+            transform: translateY(-50%);
+            transition: all 0.2s ease;
+            pointer-events: none;
+            font-family: poppins;
+         }
+input:focus + label,
+input:valid + label{
+   bottom: 6.2rem;
+   font-size: 12px;
+   background: #fff;
+   padding-right: 10px;
+}
+         #whitespace{
+            position: relative;
+            padding: 7rem;
+            background-color: #fff;
+            border-radius: 1rem;
+            bottom: 14rem;
+            right: 25%;
+            width: 60rem;
+         }
          #next{
             position: relative;
             left: 40%;
+            bottom: 2rem;
          }
          #p3{
             position:relative;
-            bottom: 4em;
+            bottom: 3em;
             color: black;
-            font-size: 25px;
-            left: 35%;
+            font-size: 20px;
+            left: 38%;
          }
          #p2{
             position:relative;
-            bottom: 12em;
-            color: #eee;
+            bottom: 14em;
+            color: #fff;
             left: 15%;
+
          }
          #initials{
             position: relative;
-            width: 100%;
-            bottom: 5em;
+            width: 110%;
+            bottom: 4em;
+            right: 3rem;
+            border: 2px solid #3B00FF;
+            border-radius: 5px;
+            padding: 1rem;
          }
          .info{
             font-size: 12px;
             position: relative;
-            color: #eee;
+            color: #fff;
             bottom: 18em;
+            white-space: nowrap;
+            right: 12rem;
          }
          h3{
             position: relative;
@@ -194,13 +237,13 @@ required>
          .pad {
             background: linear-gradient(#29C2FF, #3B00FF);
             width: 80%;
-            height: 50%;
+            height: 30%;
             padding: 250px;
             border-radius: 2.5rem;
             margin-left: 10%;
             margin-top: 2%;
          }
-         .screen2{
+         #screen2{
             display: none;
          }
       </style>
