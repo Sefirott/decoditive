@@ -26,25 +26,30 @@
 <div id="screen1">
 <h2 class="container-text">Test eye-tracking</h2>
 <h3>Welcome to Decoditive's testing tool!</h3>
-<p class="info">
+<p class="info1">
    Before starting the test, please read the terms and privacy policy to understand what it is about and how we protect you. Afterwards, the steps to follow will be:
    
 </p>
+<span>space</span>
 <p class="info">We will ask you to answer several questions (they will always be delivered anonymously, we will not share your name or email)</p>
-<p class="info">Then, you must perform a calibration of your gaze, which simply consists of following a dot that moves across the screen</p>
-<p class="info">Finally, we will show you the content that you have to watch and when it finishes, you can just close the browser</p>
+
+<p class="info"><span>....</span>Then, you must perform a calibration of your gaze, which simply consists of following a dot that moves across the screen</p>
+<p class="info"><span>........</span>Finally, we will show you the content that you have to watch and when it finishes, you can just close the browser</p>
+<span>space</span>
 <p class="info">
-   If you have any questions, do not hesitate to contact us at the following email address: contact@decoditive.com 
+  <span>.....</span>If you have any questions, do not hesitate to contact us at the following email address: contact@decoditive.com 
 </p>
 <form>
-<p class="info">
+<p class="checks">
+   <span>space space space space  spa</span>
    <input type="checkbox" id="check1" required>
    I accept the
    <a href="https://test.decoditive.com/assets/en/TermsConditions.pdf" target="_blank">
       terms and conditions
    </a>
    </p>
-   <p class="info">
+   <p class="checks">
+      <span>space space space space  space</span>
       <input type="checkbox" id="check2" required>
    I accept the
    <a href="https://test.decoditive.com/assets/en/PrivacyPolicy.pdf" 
@@ -52,7 +57,7 @@
    privacy policy
    </a>
 </p>
-<p class="info">
+<p class="checks">
    <input type="checkbox" id="check3" required>
    I will not record or disclose with any third party the material that I will see because it can be confidential
 </p>
@@ -64,7 +69,7 @@
 </form>
 </div>
 <div id="screen2">
-   <h2 class="container-text" id="container-text">Test eye-tracking</h2>
+   <h2 id="container-text">Test eye-tracking</h2>
    <p id="p2" >You're going to test the last version of the eye tracker </p>
 
 
@@ -97,12 +102,19 @@ Please, write your initials + birth year. Ie: John Doe, born in 1983 - JD 1983*
          @media  screen and (min-width: 1920px) {
   
             #whitespace{
-            position: relative;
             padding: 11rem !important;
             border-radius: 1rem;
             left: -15rem !important;
             bottom: 18rem !important;
             width: 90rem !important;
+         }
+         .container-text{
+            bottom: 10em !important; 
+            left: 35% !important;
+         }
+         h3{
+            bottom: 12em !important;
+            left: 25% !important;
          }
          #container-text{
             position: relative;
@@ -110,35 +122,38 @@ Please, write your initials + birth year. Ie: John Doe, born in 1983 - JD 1983*
             left: 35% !important;
             color: #eee
          }
+         .info1{
+            font-size: 20px !important;
+            bottom: 14em !important;
+            left: -9em !important;
+         }
+         .info{
+            font-size: 20px !important;
+            bottom: 14em !important;
+         }
          #p2{
-            position: relative;
             bottom: 18em !important;
-            color: #fff;
             left: 27% !important;
          }
          #p3{
-            position:relative;
-            bottom: 3em;
-            color: black;
-            font-size: 20px;
             left: 43% !important;
          }
          #next{
-            position: relative;
             left: 45% !important;
             bottom: 2rem;
          }
          .pad {
-            background: linear-gradient(#29C2FF, #3B00FF);
-            width: 80%;
-            height: 30%;
             padding: 350px !important;
-            border-radius: 2.5rem;
-            margin-left: 10%;
-            margin-top: 2%;
          }
+         
         
-}
+}       
+         #container-text{
+            position: relative;
+            bottom: 8em;
+            color: #eee;
+            left: 6em;
+         }
          .wrapper{
             position: relative;
          }
@@ -160,6 +175,14 @@ input:valid + label{
    background: #fff;
    padding-right: 10px;
 }
+         .checks{
+            font-size: 13px;
+            position: relative;
+            color: #fff;
+            bottom: 10em;
+            white-space: nowrap;
+            font-family: Arial, Helvetica, sans-serif;
+         }
          #whitespace{
             position: relative;
             padding: 7rem;
@@ -197,23 +220,39 @@ input:valid + label{
             border-radius: 5px;
             padding: 1rem;
          }
-         .info{
-            font-size: 12px;
+         span{
+            visibility: hidden;
+         }
+         .info1{
+            font-size: 13px;
             position: relative;
             color: #fff;
-            bottom: 18em;
+            bottom: 17em;
             white-space: nowrap;
-            right: 12rem;
+            right: 8rem;
+            font-family: Arial, Helvetica, sans-serif;
+         }
+         .info{
+            font-size: 13px;
+            position: relative;
+            color: #fff;
+            bottom: 17em;
+            white-space: nowrap;
+            right: 4rem;
+            line-height: 50%;
+            font-family: Arial, Helvetica, sans-serif;
          }
          h3{
             position: relative;
-            bottom: 10em;
+            font-size: 25px;
+            bottom: 9.5em;
             left: 15%;
-            color: #eee
+            color: whitesmoke; 
+            
          }
          .container-button{
             position: relative;
-            bottom: 15.7em;
+            bottom: 9em;
          }
          .container-text{
             position: relative;
