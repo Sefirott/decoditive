@@ -14,8 +14,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet/less" type="text/css" href="styles.less" />
-<script src="less.js" type="text/javascript"></script>
+
 
    <head>
       <title>EyeTracking</title>
@@ -65,8 +64,8 @@
 </form>
 </div>
 <div id="screen2">
-   <h2 class="container-text">Test eye-tracking</h2>
-   <p id="p2" class="p2-align">You're going to test the last version of the eye tracker </p>
+   <h2 class="container-text" id="container-text">Test eye-tracking</h2>
+   <p id="p2" >You're going to test the last version of the eye tracker </p>
 
 
    <div id="whitespace">
@@ -95,18 +94,40 @@ Please, write your initials + birth year. Ie: John Doe, born in 1983 - JD 1983*
          body {
          overflow: hidden;
          }
-	        
          @media  screen and (min-width: 1920px) {
   
             #whitespace{
             position: relative;
-            padding: 10rem;
+            padding: 7rem;
             border-radius: 1rem;
+            left: -6rem !important;
             bottom: 16rem;
-            left: 5rem;		    
-            width: 60rem;
+            width: 90rem !important;
          }
-		   
+         #container-text{
+            position: relative;
+            bottom: 7em;
+            left: 40%;
+            color: #eee
+         }
+         #p2{
+            position: relative;
+            bottom: 14em;
+            color: #fff;
+            left: 30% !important;
+         }
+         #p3{
+            position:relative;
+            bottom: 3em;
+            color: black;
+            font-size: 20px;
+            left: 43% !important;
+         }
+         #next{
+            position: relative;
+            left: 45% !important;
+            bottom: 2rem;
+         }
 }
          .wrapper{
             position: relative;
@@ -115,7 +136,7 @@ Please, write your initials + birth year. Ie: John Doe, born in 1983 - JD 1983*
             position: absolute;
             bottom: 4.2rem;
             left: -2rem;
-            color: #3B00FF;
+            color: grey;
             font-size: 15px;
             transform: translateY(-50%);
             transition: all 0.2s ease;
@@ -140,7 +161,7 @@ input:valid + label{
          }
          #next{
             position: relative;
-            left: 40%;
+            left: 43%;
             bottom: 2rem;
          }
          #p3{
@@ -148,7 +169,7 @@ input:valid + label{
             bottom: 3em;
             color: black;
             font-size: 20px;
-            left: 38%;
+            left: 40%;
          }
          #p2{
             position:relative;
@@ -442,7 +463,7 @@ let check1 = document.getElementById("check1");
 let check2 = document.getElementById("check2");
 let check3 = document.getElementById("check3");
 dis.addEventListener("click", function() {
-   if((check1 && check2 && check3).checked)
+   if((check1).checked && (check2).checked && (check3).checked)
 { 
         
      document.getElementById("screen1").style.display = "none";   
